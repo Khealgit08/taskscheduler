@@ -3,9 +3,9 @@ import time
 
 class TaskBase:
     def __init__(self):
-        self.task_description = ""
-        self.task_time = ""
-        self.task_date = ""
+        self._task_description = ""
+        self._task_time = ""
+        self._task_date = ""
 
     def validate_time(self, time_string):
         try:

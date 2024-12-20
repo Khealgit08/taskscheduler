@@ -13,12 +13,16 @@ class TaskSchedulerApp:
         self.root.geometry("915x780")
         self.root.resizable(False, False)
 
-        self.Username = StringVar(value="")
-        self.getbio = StringVar(value="")
-        self.greeting = StringVar(value="Hi! Welcome to your task scheduler!")
-        self.bio = StringVar(value="bio") 
-        self.address = StringVar(value="")
-        self.cnum = StringVar(value="")
+        self._Username = StringVar(value="")
+        self._getbio = StringVar(value="")
+        self._greeting = StringVar(value="Hi! Welcome to your task scheduler!")
+        self._bio = StringVar(value="bio") 
+        self._address = StringVar(value="")
+        self._cnum = StringVar(value="")
+
+        self._task_description_var = tk.StringVar()
+        self._task_time_var = tk.StringVar()
+        self._task_date_var = tk.StringVar()
 
         self.tasks = []
         self.history = TaskHistory()
@@ -136,10 +140,6 @@ class TaskSchedulerApp:
         blframe = tk.Frame(parentframe, bg="ivory4", width=375)
         blframe.pack(side="left", fill="both", expand=True)
 
-        self.task_description_var = tk.StringVar()
-        self.task_time_var = tk.StringVar()
-        self.task_date_var = tk.StringVar()
-
         tk.Label(
             blframe,
             text="   Task Description:   ",
@@ -244,9 +244,9 @@ class TaskSchedulerApp:
 
 
     def add_task(self):
-        task_desc = self.task_description_var.get()
-        task_time = self.task_time_var.get()
-        task_date = self.task_date_var.get()
+        task_desc = self._task_description_var.get()
+        task_time = self._task_time_var.get()
+        task_date = self._task_date_var.get()
 
         if not task_desc:
             messagebox.showerror("Error", "Task description cannot be empty.")
